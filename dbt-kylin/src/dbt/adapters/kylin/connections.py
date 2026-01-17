@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 from dataclasses import dataclass
-from typing import Any, Tuple
+from typing import Any, Optional, Tuple
 
 from dbt.adapters.contracts.connection import AdapterResponse, Connection, Credentials
 from dbt.adapters.events.logging import AdapterLogger
@@ -35,9 +35,9 @@ def _coerce_bool(value: Any, *, default: bool) -> bool:
 
 @dataclass
 class KylinCredentials(Credentials):
-    host: str
-    user: str
-    password: str
+    host: Optional[str] = None
+    user: Optional[str] = None
+    password: Optional[str] = None
     database: str
     schema: str = "DEFAULT"
     port: int = 7070
